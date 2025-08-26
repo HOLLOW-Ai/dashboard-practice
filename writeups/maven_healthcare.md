@@ -19,6 +19,8 @@ Things to note:
 # Data Modeling
 From the start, I thought I would've needed to create 2 fact tables: Encounters and procedures. For every encounter, a patient can have none or multiple procedures which are linked together by an encounter ID in both tables. However, after watching some videos and reading a blog post from the Kimball group, I decided to follow the recommended design structure to model header/line transactions to keep the model in a star schema. It also allows me to turn the reason description column in both tables into its own dimension table. I used a query I found online to create a Date dimension table to make using time-intelligence functions much easier.
 
+![Data Model in Star Schema forma](https://github.com/HOLLOW-Ai/dashboard-practice/blob/85accb7159f466c2d4a28dc1da45d0ad3c9e9245/images/hospital_mgh_model.png)
+
 
 # Data Transformations
 While transforming columns, this was the main pain point when working entirely in PowerBI. Columns I didn't realize I needed to make would be done in Power Query or created as a calculated column, but at some point it would cause a major slowdown when processing the data. I did create a column to determine the length of stay for each encounter in hours. Knowing the scope of this project, I removed the organizations table that was in the original file since it only contained 1 row of data about the location of the hospital. Additionally, I removed location information from all the tables as my analysis was not focused on geographic analysis.
